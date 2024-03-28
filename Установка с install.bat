@@ -1,7 +1,9 @@
 @echo off
 ::Скрипт создан для переноса файлов флешки в корень диска и последуюущую автоматическую установку некоторых программ. Тут есть еще что допиливать, но уже скрипт активно используется в моей практике.
+::The script was created to transfer files from a flash drive to the root of the disk and then automatically install some programs. There is still something to be completed here, but the script is already actively used in my practice.
 
 :: Находим букву диска флешки
+:: Find the drive letter of the flash drive
 for /f "tokens=2 delims==" %%D in ('wmic logicaldisk where drivetype^=2 get deviceid /value') do (
     set "flashDrive=%%D"
     goto :continue
@@ -14,6 +16,7 @@ if not defined flashDrive (
 )
 
 :: Определяем пути
+:: Defining paths
 set "sourceFolder=%flashDrive%\install"
 set "targetFolder=C:\install"
 set "installLogFile=%targetFolder%\InstallLog.txt"
@@ -21,12 +24,14 @@ set "desktopPath=%USERPROFILE%\Desktop"
 set "desktopLogFile=%desktopPath%\InstallLog.txt"
 
 :: Создаем папку install на C:\ диске
+:: Create an install folder on the C:\ drive
 if not exist "%targetFolder%" (
     mkdir "%targetFolder%"
     echo C:\install folder created
 )
 
 :: Добавляем в Windows Defender исключение
+:: Add exceptions to Windows Defender
 powershell -Command Add-MpPreference -ExclusionPath "%targetFolder%" -Force
 echo Exception added to Windows Defender
 
@@ -39,15 +44,18 @@ echo.
 echo.
 
 :: Копируем файлы с флешки в таргет
+:: Copy files from the flash drive to the target
 xcopy "%sourceFolder%\*" "%targetFolder%\" /s /e /i /h /y
 echo.
 echo.
 
 :: Логируем создание папки
+:: Logging the creation of a folder
 call :Log "Files successfully copied from %sourceFolder% to %targetFolder%"
 echo.
 
 :: Установка программ
+:: Installing programs
 call :InstallProgram "7zipSetup.exe" "/S" "7-Zip"
 call :InstallProgram "Notepad.8.6.4.exe" "/S /I" "Notepad++"
 call :InstallProgram "ChromeSetup.exe" "/silent /install" "Google Chrome"
@@ -85,8 +93,7 @@ echo %DATE% %TIME% - %* >> "%installLogFile%"
 echo %DATE% %TIME% - %* >> "%desktopLogFile%"
 echo %DATE% %TIME% - %*
 
-
 goto :eof
 
-:: Автор: Эдгар
-
+:: Автор: LLIILLEEDD
+:: Author: LLIILLEEDD
