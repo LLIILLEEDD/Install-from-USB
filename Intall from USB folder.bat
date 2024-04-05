@@ -1,7 +1,7 @@
 @echo off
-:: Скрипт создан для переноса файлов флешки в корень диска и последуюущую автоматическую установку некоторых программ. 
+:: Скрипт создан для переноса файлов флешки в корень диска и последуюущую автоматическую установку некоторых программ. Залит на хитхабе. 
 :: Тут есть еще что допиливать, но уже скрипт активно используется в моей практике.
-:: The script was created to transfer files from a flash drive to the root of the disk and then automatically install some programs. 
+:: The script was created to transfer files from a flash drive to the root of the disk and then automatically install some programs. Uploaded to hithub.
 :: There is still something to be completed here, but the script is already actively used in my practice.
 
 :: Находим букву диска флешки
