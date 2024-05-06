@@ -60,6 +60,7 @@ echo.
 :: Installing programs
 call :InstallProgram "7zipSetup.exe" "/S" "7-Zip"
 call :InstallProgram "Notepad.8.6.4.exe" "/S /I" "Notepad++"
+call :InstallProgram "AdobeAcrobat.exe" "/S" "Adobe Acrobat Reader"
 call :InstallProgram "ChromeSetup.exe" "/silent /install" "Google Chrome"
 call :InstallProgram "Driver.Booster.exe" "/SILENT" "Driver Booster"
 call :InstallProgram "FirefoxSetup.msi" "/q" "Mozilla Firefox"
